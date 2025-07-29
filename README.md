@@ -1,13 +1,13 @@
-# SyncTalk: The Devil😈 is in the Synchronization for Talking Head Synthesis [CVPR 2024]
-The official repository of the paper [SyncTalk: The Devil is in the Synchronization for Talking Head Synthesis](https://arxiv.org/abs/2311.17590)
+# Hybrid-3DGS: A Framework for High-Fidelity, Speech-Driven Talking Head Synthesis Free of Visual Artifacts [ECAI 2026]
+The official repository of the paper [Hybrid-3DGS: A Framework for High-Fidelity, Speech-Driven Talking Head Synthesis Free of Visual Artifacts]()
 
 <p align='center'>
   <b>
-    <a href="https://arxiv.org/abs/2311.17590">Paper</a>
+    <a href="">Paper</a>
     | 
-    <a href="https://ziqiaopeng.github.io/synctalk/">Project Page</a>
+    <a href="">Project Page</a>
     |
-    <a href="https://github.com/ZiqiaoPeng/SyncTalk">Code</a> 
+    <a href="https://github.com/christopherohit/Hybrid-3DGS">Code</a> 
   </b>
 </p> 
 
@@ -22,13 +22,13 @@ A short demo video can be found [here](./demo/short_demo.mp4).
   The proposed **SyncTalk** synthesizes synchronized talking head videos, employing tri-plane hash representations to maintain subject identity. It can generate synchronized lip movements, facial expressions, and stable head poses, and restores hair details to create high-resolution videos.
 
 ## 🔥🔥🔥 News
-- [2023-11-30] Update arXiv paper.
-- [2024-03-04] The code and pre-trained model are released.
-- [2024-03-22] The Google Colab notebook is released.
-- [2024-04-14] Add Windows support.
-- [2024-04-28] The preprocessing code is released.
-- [2024-04-29] Fix bugs: audio encoder, blendshape capture, and face tracker.
-- **[2024-05-24] Introduce torso training to repair double chin.**
+- [2025-10-20] Update arXiv paper.
+- [2026-03-04] The code and pre-trained model are released.
+- [2026-03-22] The Google Colab notebook is released.
+- [2026-04-14] Add Windows support.
+- [2026-04-28] The preprocessing code is released.
+- [2026-04-29] Fix bugs: audio encoder, blendshape capture, and face tracker.
+- **[2026-05-24] Introduce torso training to repair double chin.**
 
 
 
