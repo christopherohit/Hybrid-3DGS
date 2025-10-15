@@ -1,0 +1,3 @@
+[submodule "Hybrid-3DGS"]
+	path = Hybrid-3DGS
+	url = https://github.com/christopherohit/Hybrid-3DGS.git
