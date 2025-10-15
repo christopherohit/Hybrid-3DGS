@@ -53,9 +53,9 @@ def extract_landmarks(ori_imgs_dir):
 
     print(f'[INFO] ===== extract face landmarks from {ori_imgs_dir} =====')
     try:
-        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False, device='cpu')
+        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False, device='cuda')
     except:
-        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False, device='cpu')
+        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False, device='cuda')
     image_paths = glob.glob(os.path.join(ori_imgs_dir, '*.jpg'))
     for image_path in tqdm.tqdm(image_paths):
         input = cv2.imread(image_path, cv2.IMREAD_UNCHANGED) # [H, W, 3]

@@ -148,6 +148,9 @@ class DECAFaceTracker:
         num_frames = len(images)
         sample_stride = max(1, num_frames // 50)  # Sample ~50 frames
         sample_indices = list(range(0, num_frames, sample_stride))
+        # Ensure the last frame is included
+        if sample_indices[-1] != num_frames - 1:
+            sample_indices.append(num_frames - 1)
         
         shape_list = []
         exp_list = []
@@ -254,8 +257,8 @@ class DECAFaceTracker:
         focal_length_param = torch.nn.Parameter(focal_length.clone().detach())
         optimizer = torch.optim.Adam([shape_params, exp_params, pose_params, trans, focal_length_param], lr=0.3)
         
-        # Optimization loop (matching BFM: 2000 iterations)
-        num_iters = 2000
+        # Optimization loop (matching BFM: 4000 iterations)
+        num_iters = 500000
         print("Optimizing DECA parameters with strong regularization...")
         
         for iter in tqdm(range(num_iters), desc="Optimization"):

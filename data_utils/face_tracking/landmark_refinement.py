@@ -14,9 +14,9 @@ from typing import Optional, Union, Tuple
 try:
     import mediapipe as mp
     MEDIAPIPE_AVAILABLE = True
-except ImportError:
+except Exception as e:
     MEDIAPIPE_AVAILABLE = False
-    print("Warning: MediaPipe not available")
+    print(f"Warning: MediaPipe not available: {e}")
 
 # EMOCA for emotion-aware landmark refinement
 try:
