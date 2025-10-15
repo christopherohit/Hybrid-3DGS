@@ -1,44 +1,65 @@
-# SyncTalk: The Devil😈 is in the Synchronization for Talking Head Synthesis [CVPR 2024]
+# SyncTalk - Personal Research Fork
 
+> **Personal Implementation & Experimentation**  
+> This is my personal fork of SyncTalk for research and development purposes.
 
-The official repository of the paper [SyncTalk: The Devil is in the Synchronization for Talking Head Synthesis](https://arxiv.org/abs/2311.17590)
+## About This Fork
 
-<p align='center'>
-  <b>
-    <a href="https://arxiv.org/abs/2311.17590">Paper</a>
-    | 
-    <a href="https://ziqiaopeng.github.io/synctalk/">Project Page</a>
-    |
-    <a href="https://github.com/ZiqiaoPeng/SyncTalk">Code</a> 
-  </b>
-</p> 
+This repository contains my working version of [SyncTalk](https://github.com/ZiqiaoPeng/SyncTalk), a CVPR 2024 paper on synchronized talking head synthesis. I'm using this for personal research, experiments, and improvements.
 
-Colab notebook demonstration: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Egq0_ZK5sJAAawShxC0y4JRZQuVS2X-Z?usp=sharing)
-
-A short demo video can be found [here](./demo/short_demo.mp4).
+### Original Project
+- **Paper**: [SyncTalk: The Devil is in the Synchronization for Talking Head Synthesis](https://arxiv.org/abs/2311.17590)
+- **Official Repository**: [ZiqiaoPeng/SyncTalk](https://github.com/ZiqiaoPeng/SyncTalk)
+- **Project Page**: [ziqiaopeng.github.io/synctalk/](https://ziqiaopeng.github.io/synctalk/)
 
   <p align='center'>  
     <img src='assets/image/synctalk.png' width='1000'/>
   </p>
 
-  The proposed **SyncTalk** synthesizes synchronized talking head videos, employing tri-plane hash representations to maintain subject identity. It can generate synchronized lip movements, facial expressions, and stable head poses, and restores hair details to create high-resolution videos.
-  
-<div align="center">
-  
-  **🔥Try using [SyncTalk_2D](https://github.com/ZiqiaoPeng/SyncTalk_2D) to achieve faster and better visual quality.🔥**
-  
-  </div>
+### What is SyncTalk?
 
-## 🔥🔥🔥 News
-- [2023-11-30] Update arXiv paper.
-- [2024-03-04] The code and pre-trained model are released.
-- [2024-03-22] The Google Colab notebook is released.
-- [2024-04-14] Add Windows support.
-- [2024-04-28] The preprocessing code is released.
-- [2024-04-29] Fix bugs: audio encoder, blendshape capture, and face tracker.
-- [2024-05-24] Introduce torso training to repair double chin.
-- [2025-06-25] Update [SyncTalk_2D](https://github.com/ZiqiaoPeng/SyncTalk_2D).
-- [2025-10-11] **NEW**: DECA upgrade with learning-based landmark refinement! See [DECA_UPGRADE_GUIDE.md](DECA_UPGRADE_GUIDE.md) for details.
+**SyncTalk** synthesizes synchronized talking head videos, employing tri-plane hash representations to maintain subject identity. It can generate synchronized lip movements, facial expressions, and stable head poses, and restores hair details to create high-resolution videos.
+
+### My Modifications & Experiments
+
+- ✅ Enhanced DECA integration with landmark refinement support
+- ✅ Multi-GPU processing pipeline optimization
+- ✅ Improved error handling and ffmpeg compatibility
+- 🔧 Custom preprocessing improvements
+- 🔧 Ongoing experiments with various models and parameters
+
+---
+
+## 📋 Table of Contents
+- [About This Fork](#about-this-fork)
+- [Personal Development Log](#-personal-development-log)
+- [Setup & Installation](#-setup--installation)
+- [Quick Command Reference](#-quick-command-reference-my-common-usage)
+- [Data Preparation](#data-preparation)
+- [Quick Start](#quick-start)
+- [Training](#train)
+- [Personal Notes & Tips](#-personal-notes--tips)
+- [Citation](#citation)
+
+---
+
+## 📝 Personal Development Log
+
+- [2025-10-15] Fixed ffmpeg compatibility issues in image extraction pipeline
+- [2025-10-15] Working on processing pipeline for multiple subjects (May, Obama, Shaheen, etc.)
+- [2025-10-11] Integrated DECA upgrade with learning-based landmark refinement
+- Setting up custom dataset preprocessing workflow
+
+## 🔥 Original Project Updates
+- [2025-10-11] DECA upgrade with learning-based landmark refinement
+- [2025-06-25] Update [SyncTalk_2D](https://github.com/ZiqiaoPeng/SyncTalk_2D)
+- [2024-05-24] Introduce torso training to repair double chin
+- [2024-04-29] Fix bugs: audio encoder, blendshape capture, and face tracker
+- [2024-04-28] The preprocessing code is released
+- [2024-04-14] Add Windows support
+- [2024-03-22] The Google Colab notebook is released
+- [2024-03-04] The code and pre-trained model are released
+- [2023-11-30] Update arXiv paper
 
 
 
@@ -47,15 +68,23 @@ Thanks to [okgpt](https://github.com/okgptai), we have launched a Windows integr
 
 Download link: [Hugging Face](https://huggingface.co/ZiqiaoPeng/SyncTalk/blob/main/SyncTalk-Windows.zip) ||  [Baidu Netdisk](https://pan.baidu.com/s/1g3312mZxx__T6rAFPHjrRg?pwd=6666)
 
-## For Linux
+## 🚀 Setup & Installation
+
+### My Environment
+- **OS**: Ubuntu 20.04 (Linux 5.15.0-139)
+- **PyTorch**: 1.12.1
+- **CUDA**: 11.3
+- **GPUs**: Multiple A4000 GPUs for parallel processing
 
 ### Installation
 
-Tested on Ubuntu 18.04, Pytorch 1.12.1 and CUDA 11.3.
+Original project tested on Ubuntu 18.04, PyTorch 1.12.1 and CUDA 11.3.
+
 ```bash
 git clone https://github.com/ZiqiaoPeng/SyncTalk.git
 cd SyncTalk
 ```
+
 #### Install dependency
 
 ```bash
@@ -76,10 +105,24 @@ If you encounter problems installing PyTorch3D, you can use the following comman
 python ./scripts/install_pytorch3d.py
 ```
 
+### 🎯 Quick Command Reference (My Common Usage)
+
+```bash
+# My typical preprocessing workflow with DECA (recommended)
+python data_utils/process.py data/<ID>/<ID>.mp4 --asr ave --use_deca --gpu_id 0 1
+
+# Multi-GPU setup: GPU 0 for main tasks, GPU 1 for face tracking
+# Using AVE audio encoder (better for accurate lip sync)
+# Example:
+python data_utils/process.py data/May/May.mp4 --asr ave --use_deca --gpu_id 0 1
+```
+
+---
+
 ### Data Preparation
 #### Pre-trained model
 Please place the [May.zip](https://drive.google.com/file/d/18Q2H612CAReFxBd9kxr-i1dD8U1AUfsV/view?usp=sharing) in the **data** folder, the [trial_may.zip](https://drive.google.com/file/d/1C2639qi9jvhRygYHwPZDGs8pun3po3W7/view?usp=sharing) in the **model** folder, and then unzip them.
-#### [New] ⚡ DECA Upgrade (Recommended)
+#### [New] ⚡ DECA Upgrade (Recommended - My Preferred Method)
 
 For **improved accuracy and performance**, use DECA instead of BFM:
 
@@ -242,7 +285,28 @@ python main.py data/May --workspace model/trial_may_torso -O  --torso --test --t
 
 
 
+## 💡 Personal Notes & Tips
+
+### My Workflow
+1. **Data Processing**: Using DECA with MediaPipe landmark refinement for better accuracy
+2. **Multi-GPU Setup**: GPU 0 for main tasks, GPU 1 for face tracking (parallel processing)
+3. **FFmpeg Issues**: Fixed compatibility with older ffmpeg versions by removing unsupported flags
+
+### Current Experiments
+- Testing different subjects: May, Obama, Shaheen, Macron, Lieu, Yen
+- Comparing DECA vs BFM face tracking performance
+- Optimizing preprocessing pipeline for faster iteration
+
+### Common Issues I've Fixed
+- ❌ `sws_flags` error → ✅ Removed incompatible ffmpeg flags
+- ❌ GPU out of memory → ✅ Implemented multi-GPU processing
+- 🔧 Currently working on: Semantic segmentation pipeline
+
+---
+
 ## Citation	
+
+If you use the original SyncTalk work, please cite:
 
 ```
 @inproceedings{peng2024synctalk,
@@ -260,4 +324,6 @@ This code is developed heavily relying on [ER-NeRF](https://github.com/Fictionar
 Thanks for these great projects. Thanks to [Tiandishihua](https://github.com/Tiandishihua) for helping us fix the bug that loss equals NaN.
 
 ## Disclaimer
-By using the "SyncTalk", users agree to comply with all applicable laws and regulations, and acknowledge that misuse of the software, including the creation or distribution of harmful content, is strictly prohibited. The developers of the software disclaim all liability for any direct, indirect, or consequential damages arising from the use or misuse of the software.
+By using "SyncTalk", users agree to comply with all applicable laws and regulations, and acknowledge that misuse of the software, including the creation or distribution of harmful content, is strictly prohibited. The developers of the software disclaim all liability for any direct, indirect, or consequential damages arising from the use or misuse of the software.
+
+**Note**: This is a personal research fork. All modifications are for educational and research purposes. Please refer to the [original repository](https://github.com/ZiqiaoPeng/SyncTalk) for the official implementation.

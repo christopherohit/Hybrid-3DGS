@@ -35,8 +35,8 @@ def extract_audio_features(path, mode='ave'):
 def extract_images(path, out_path, fps=25):
 
     print(f'[INFO] ===== extract images from {path} to {out_path} =====')
-    # Add sws_flags to fix alignment warning and ensure dimensions are even
-    cmd = f'ffmpeg -i {path} -vf "fps={fps},scale=trunc(iw/2)*2:trunc(ih/2)*2" -sws_flags +accurate_rounding+full_chroma_int -qmin 1 -q:v 1 -start_number 0 {os.path.join(out_path, "%d.jpg")}'
+    # Extract images with scale filter to ensure dimensions are even
+    cmd = f'ffmpeg -i {path} -vf "fps={fps},scale=trunc(iw/2)*2:trunc(ih/2)*2" -qmin 1 -q:v 1 -start_number 0 {os.path.join(out_path, "%d.jpg")}'
     os.system(cmd)
     print(f'[INFO] ===== extracted images =====')
 
@@ -53,9 +53,9 @@ def extract_landmarks(ori_imgs_dir):
 
     print(f'[INFO] ===== extract face landmarks from {ori_imgs_dir} =====')
     try:
-        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False)
+        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False, device='cpu')
     except:
-        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False)
+        fa = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False, device='cpu')
     image_paths = glob.glob(os.path.join(ori_imgs_dir, '*.jpg'))
     for image_path in tqdm.tqdm(image_paths):
         input = cv2.imread(image_path, cv2.IMREAD_UNCHANGED) # [H, W, 3]
